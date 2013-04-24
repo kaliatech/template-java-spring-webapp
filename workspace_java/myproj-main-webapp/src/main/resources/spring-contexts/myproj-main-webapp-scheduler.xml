@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:task="http://www.springframework.org/schema/task"
+
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd">
+
+  <!-- 14400000, every 4 hrs -->
+  <!-- 3600000,  every 1 hr -->
+  
+  
+  <!-- add initial-delay whenever spring supports it  -->
+  <task:scheduler id="spring-scheduler" pool-size="2" />
+  
+  <task:scheduled-tasks scheduler="spring-scheduler">
+    <task:scheduled ref="scheduledService" method="doScheduledTask" fixed-delay="3600000" initial-delay="60000" /> 
+  </task:scheduled-tasks>
+  
+</beans>

@@ -1,0 +1,43 @@
+<launch4jConfig>
+  <dontWrapJar>true</dontWrapJar>
+  <headerType>console</headerType>
+  <jar>server\bin\bootstrap.jar</jar>
+  <outfile>C:\Projects\mycompany\proj-myproj\builds\myproj_001_121024-094824\myproj.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine>start</cmdLine>
+  <chdir>-</chdir>
+  <priority>normal</priority>
+  <downloadUrl>http://java.com/download</downloadUrl>
+  <supportUrl></supportUrl>
+  <customProcName>false</customProcName>
+  <stayAlive>false</stayAlive>
+  <manifest></manifest>
+  <icon>myproj-app-icon.ico</icon>
+  <var>CATALINA_HOME=server</var>
+  <singleInstance>
+    <mutexName>mycompany-myproj</mutexName>
+    <windowTitle></windowTitle>
+  </singleInstance>
+  <classPath>
+    <mainClass>org.apache.catalina.startup.Bootstrap</mainClass>
+    <cp>server\bin\*</cp>
+  </classPath>
+  <jre>
+    <path></path>
+    <minVersion>1.6.0</minVersion>
+    <maxVersion></maxVersion>
+    <jdkPreference>preferJdk</jdkPreference>
+    <initialHeapSize>128</initialHeapSize>
+    <maxHeapSize>512</maxHeapSize>
+    <opt>-XX:PermSize=256m -XX:MaxPermSize=512m</opt>
+    <opt>-Dconfig.dir=&quot;%EXEDIR%/config&quot;</opt>
+    <opt>-Ddatabase.dir=&quot;%EXEDIR%/database&quot;</opt>
+    <opt>-XX:+CMSClassUnloadingEnabled -Djava.awt.headless=true</opt>
+    <opt>-Djava.util.logging.config.file=&quot;%EXEDIR%/server/conf/logging.properties&quot;</opt>
+    <opt>-Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager</opt>
+    <opt>-Djava.endorsed.dirs=&quot;%EXEDIR%/server/endorsed&quot;</opt>
+    <opt>-Dcatalina.home=server</opt>
+    <opt>-Dcatalina.base=server</opt>
+    <opt>-Djava.io.tmpdir=&quot;%EXEDIR%/server/temp&quot;</opt>
+  </jre>
+</launch4jConfig>

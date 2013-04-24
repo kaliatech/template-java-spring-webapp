@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security" xmlns:beans="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+           http://www.springframework.org/schema/security
+           http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+
+  <http pattern="/css/**" security="none" />
+  <http pattern="/login.jsp*" security="none" />
+
+  <!-- REST API SECURITY -->
+
+  <!-- Filter chain for REST requests. -->
+  <!--access-decision-manager-ref="restAccessDecisionManager"-->
+  <http pattern="/rest/**" create-session="stateless" authentication-manager-ref="defaultAuthManager" entry-point-ref="restAuthEntryPoint">
+    <intercept-url pattern="/**" access="ROLE_ADMIN" />
+
+    <port-mappings>
+      <port-mapping http="80" https="443" />
+      <port-mapping http="8080" https="8443" />
+    </port-mappings>
+
+  </http>
+
+  <beans:bean id="restAuthEntryPoint" class="org.springframework.security.web.authentication.Http403ForbiddenEntryPoint" />
+
+
+  <!-- NORMAL WEB SECURITY -->
+
+  <!-- Filter chain for everything else. -->
+  <!-- auto-config: Automatically registers a login form, BASIC authentication, anonymous authentication, logout services, -->
+  <!-- remember-me and servlet-api-integration -->
+  <http auto-config="true" authentication-manager-ref="defaultAuthManager" >
+    <anonymous/>
+    <intercept-url pattern="/admin**" access="ROLE_ADMIN" requires-channel="https" />
+    <intercept-url pattern="/**" access="IS_AUTHENTICATED_ANONYMOUSLY" requires-channel="http" />
+    <!-- <form-login /> <http-basic /> <logout /> -->
+    <port-mappings>
+      <port-mapping http="80" https="443" />
+      <port-mapping http="8080" https="8443" />
+    </port-mappings>
+    <logout delete-cookies="JSESSIONID" />
+  </http>
+
+  <authentication-manager id="defaultAuthManager">
+    <authentication-provider>
+      <user-service>
+        <user name="jimi" password="jimispassword" authorities="ROLE_USER, ROLE_ADMIN" />
+        <user name="bob" password="bobspassword" authorities="ROLE_USER" />
+      </user-service>
+    </authentication-provider>
+  </authentication-manager>
+
+
+  <!-- PORT MAPPINGS...not sure how to share this with the above namespaces and also make avail to SharedConfigSettings -->
+  <beans:bean id="portMapper" class="org.springframework.security.web.PortMapperImpl">
+    <beans:property name="portMappings">
+      <beans:map>
+        <beans:entry key="80">
+          <beans:value>443</beans:value>
+        </beans:entry>
+        <beans:entry key="8080">
+          <beans:value>8443</beans:value>
+        </beans:entry>
+      </beans:map>
+    </beans:property>
+  </beans:bean>
+
+</beans:beans>

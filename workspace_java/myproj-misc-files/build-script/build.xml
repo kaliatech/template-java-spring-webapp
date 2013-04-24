@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+
+<project name="myproj" default="package" basedir="../..">
+
+	<property environment="env"/>
+	
+	<!-- init the DSTAMP, TSTAMP, and TODAY properties -->
+	<tstamp>
+		<format property="build.builddate" pattern="yyyMMdd-kkmmss" />
+	</tstamp>
+
+	<!-- Define log file -->
+	<record name="build.log" />
+
+	<target name="init">
+		<input message="Build number:" addproperty="build.buildnum" />
+
+		<property name="build.buildname" value="${build.buildnum}_${build.builddate}" />
+
+		<property name="build.dir" value="../builds/myproj_${build.buildname}" />
+		<property name="build.server.dir" value="../builds/myproj_${build.buildname}/server" />
+
+		<echo>Build Number: ${build.buildname}</echo>
+
+	</target>
+
+	<target name="maven-install" depends="init">
+	
+		<exec dir="myproj" executable="cmd" failonerror="true">
+			<arg value="/c" />
+			<arg value="${env.M2_HOME}\bin\mvn.bat"/>
+		    <arg line="clean install" />
+		</exec>
+			
+	</target>
+
+	<target name="maven-dependencies" depends="init">
+	
+		<exec dir="myproj-main-webapp" executable="cmd" failonerror="true">
+			<arg value="/c" />
+			<arg value="${env.M2_HOME}\bin\mvn.bat"/>
+		    <arg line="dependency:copy-dependencies" />
+		</exec>
+			
+	</target>
+	
+	<target name="package" description="" depends="init">
+		<delete dir="${build.dir}" />
+		<mkdir dir="${build.dir}" />
+
+		<!--
+		<mkdir dir="${build.dir}/lib"/>
+		<copy  todir="${build.dir}/lib">
+			<fileset dir="myproj-main-webapp/target/dependency"/>	
+		</copy>
+		-->
+
+
+		<!-- copy server_template -->
+		<mkdir dir="${build.server.dir}" />
+		<copy todir="${build.server.dir}">
+			<fileset dir="../server/tomcat-7.0.37" />
+		</copy>
+
+		<delete includeEmptyDirs="true">
+			<fileset dir="${build.server.dir}/logs" includes="**/*" />
+			<fileset dir="${build.server.dir}/temp" includes="**/*" />
+			<fileset dir="${build.server.dir}/webapps" includes="**/*" />
+			<fileset dir="${build.server.dir}/work" includes="**/*" />
+		</delete>
+		
+		<move file="${build.server.dir}/conf/server.xml" tofile="${build.server.dir}/conf/server.dev.xml"/>
+		<move file="${build.server.dir}/conf/server.prod.xml" tofile="${build.server.dir}/conf/server.xml"/>
+
+		<replace file="${build.server.dir}/conf/Catalina/localhost/myproj.xml"
+			     token="C:\Projects\mycompany\proj-myproj\workspace_java\myproj-main-webapp\target\myproj-main-webapp-1.0.0-SNAPSHOT"
+			     value="../webapps_mycompany/myproj"/>
+
+		<replace file="${build.server.dir}/conf/Catalina/localhost/myproj#cdn.xml"
+			     token="C:\Projects\mycompany\proj-myproj\workspace_java\myproj-main-cdn"
+			     value="../webapps_mycompany/myproj#cdn"/>
+		
+		<mkdir dir="${build.server.dir}/webapps_mycompany/myproj" />		
+		<mkdir dir="${build.server.dir}/webapps_mycompany/myproj#cdn" />
+		
+		<copy  todir="${build.server.dir}/webapps_mycompany/myproj">
+			<fileset dir="myproj-main-webapp/target/myproj-main-webapp-1.0.0-SNAPSHOT"/>	
+		</copy>
+
+		<copy  todir="${build.server.dir}/webapps_mycompany/myproj#cdn">
+			<fileset dir="myproj-main-cdn"/>	
+		</copy>
+
+		<replace file="${build.server.dir}/webapps_mycompany/myproj/templates/public/tpl-master.ftl"
+			     token="[[BUILD_NUM]]"
+			     value="${build.buildnum}"/>
+
+		<replace file="${build.server.dir}/webapps_mycompany/myproj/templates/public/tpl-master.ftl"
+			     token="[[BUILD_DATE]]"
+			     value="${build.builddate}"/>
+
+		<!--
+		<copy  todir="${build.dir}">
+			<fileset file="myproj-misc-files/start-myproj.bat"/>	
+		</copy>
+		-->
+		<copy  todir="${build.dir}">
+			<fileset file="myproj-misc-files/build-script-exe/myproj.exe"/>	
+			<fileset file="myproj-misc-files/build-script-exe/myproj-ui.url"/>
+		</copy>
+
+		
+		
+		<mkdir dir="${build.dir}/config" />		
+		<copy  todir="${build.dir}/config">
+			<fileset dir="myproj-misc-files\template-config"/>	
+		</copy>
+		
+		<mkdir dir="${build.dir}/database" />
+		<mkdir dir="${build.dir}/datafiles" />
+		<mkdir dir="${build.dir}/logs" />
+		
+	</target>
+
+	<target name="full" depends="init, maven-install, maven-dependencies, package">
+	</target>
+	
+</project>
+

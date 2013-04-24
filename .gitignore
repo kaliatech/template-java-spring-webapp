@@ -1,6 +1,25 @@
-*.class
+.idea/
+*.iml
+*.iws
+*.ipr
+*.ids
 
-# Package Files #
-*.jar
-*.war
-*.ear
+rebel.xml
+
+.metadata/
+.settings/
+.project
+.classpath
+
+.svn
+
+builds/
+target/
+
+reference/
+server/
+runtime/
+working/
+
+misc/env/local/
+misc/env/user/

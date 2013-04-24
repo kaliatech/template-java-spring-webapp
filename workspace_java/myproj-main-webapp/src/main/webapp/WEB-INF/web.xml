@@ -1,0 +1,133 @@
+<web-app metadata-complete="true" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+
+  <display-name>myproj-main-webapp</display-name>
+
+  <context-param>
+    <param-name>logbackConfigLocation</param-name>
+    <param-value>${config.dir}/myproj-logback.xml</param-value>
+  </context-param>
+
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+      /WEB-INF/classes/spring-contexts/myproj-main-webapp-appctx.xml
+    </param-value>
+  </context-param>
+
+  <!-- Used by Spring to differentiate root contexts. -->
+  <context-param>
+    <param-name>webAppRootKey</param-name>
+    <param-value>myproj-main-webapp</param-value>
+  </context-param>
+
+  <listener>
+    <listener-class>com.mycompany.myproj.shared.util.web.LogbackConfigListener</listener-class>
+  </listener>
+
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+  <filter>
+    <filter-name>UrlRewriteFilter</filter-name>
+    <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
+    <init-param>
+      <param-name>confReloadCheckInterval</param-name>
+      <param-value>60</param-value>
+    </init-param>
+    <init-param>
+      <param-name>logLevel</param-name>
+      <param-value>WARN</param-value>
+    </init-param>
+  </filter>
+
+  <filter>
+    <filter-name>AcceptHeadersRestFilter</filter-name>
+    <filter-class>com.mycompany.myproj.shared.util.web.filters.AcceptHeadersRestFilter</filter-class>
+  </filter>
+
+  <filter>
+    <filter-name>InternetExplorerRestFilter</filter-name>
+    <filter-class>com.mycompany.myproj.shared.util.web.filters.InternetExplorerRestFilter</filter-class>
+  </filter>
+
+  <filter>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>UrlRewriteFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <servlet>
+    <servlet-name>rest-dispatcher</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/classes/spring-contexts/myproj-main-webapp-dispatcher-rest.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet>
+    <servlet-name>admin-dispatcher</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/classes/spring-contexts/myproj-main-webapp-dispatcher-admin.xml</param-value>
+    </init-param>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+
+  <servlet>
+    <servlet-name>default-dispatcher</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/classes/spring-contexts/myproj-main-webapp-dispatcher-default.xml</param-value>
+    </init-param>
+    <load-on-startup>3</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>rest-dispatcher</servlet-name>
+    <url-pattern>/rest/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>admin-dispatcher</servlet-name>
+    <url-pattern>/admin</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>default-dispatcher</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  
+  <locale-encoding-mapping-list>
+    <locale-encoding-mapping>
+      <locale>en</locale>
+      <encoding>UTF-8</encoding>
+    </locale-encoding-mapping>
+  </locale-encoding-mapping-list>
+
+  <resource-ref>
+    <res-ref-name>jdbc/myprojDb</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
+  </resource-ref>  
+
+  <welcome-file-list>
+    <welcome-file>default</welcome-file>
+  </welcome-file-list>
+
+  <!-- <error-page> <error-code>404</error-code> <location>/errors/404</location> </error-page> -->
+</web-app>

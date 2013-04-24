@@ -1,0 +1,85 @@
+/* ===== Primary Styles ========================================================
+   Author:
+   ========================================================================== */
+
+/* This is required by bootstrap when responsive. See style.less. Not sure where to put this when not using less version of bootstrap. */
+/*
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+*/
+
+
+/*
+.hero-unit  {
+	background: #333 url('../i/bkgrnd3_b.jpg') no-repeat 100% center; 
+	color: white;
+	text-shadow:1px 1px 10px #333333;
+}
+
+
+h2 {
+  margin-top: 0.5em;
+}
+
+h3 {
+	margin-top: 0.5em;
+}
+
+h2 + hr {
+  margin: 2px;
+}
+
+
+.example-tb-block {
+  margin: 0 0 0.75em 0;
+}
+*/
+
+
+/* Workaround for bootstrap to center input fields vertically with labels. Not sure why required, because works on their own site. */ 
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    height: auto !important
+}
+
+#recentDataTable_length {
+	display:none;
+}
+
+#recentDataTable_filter {
+	display:none;
+}
+
+.dataTables_wrapper .fg-toolbar:first-child {
+	display:none;
+}
+
+.dataTables_wrapper table.table {
+	margin-bottom: 0px;
+}
+
+.dataTables_wrapper .table th, .dataTables_wrapper .table td {
+	padding:2px;
+}
+
+table .ui-icon {
+	display: inline-block;
+}
+
+
+.keyValList label {
+  font-weight: bolder;
+  margin-bottom:0px;
+  text-align: right;
+}
+
+.keyValList [class*="span"]  {
+  min-height: 0;
+}
+
+@media (max-width: 768px) {
+  .keyValList label {
+    text-align: left;
+  }
+}
