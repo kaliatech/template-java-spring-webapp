@@ -30,6 +30,15 @@ public class MySimpleEntity {
   @Column(nullable = false)
   private MySimpleEntityStatus status;
 
+  public MySimpleEntity() {
+
+  }
+
+  public MySimpleEntity(boolean initDefaults) {
+    this.timestamp = new Date();
+    this.status = MySimpleEntityStatus.ACTIVE;
+  }
+
   public Long getId() {
     return id;
   }

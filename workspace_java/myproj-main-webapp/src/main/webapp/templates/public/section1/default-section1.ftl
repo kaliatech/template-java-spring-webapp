@@ -11,5 +11,17 @@
 
 </div>
 
+<div class="row-fluid">
+    <div class="span12">
+        <h2>My Simple Entities</h2>
+        <#list mySimpleEntities as mySimpleEntity>
+        	${mySimpleEntity.id} - ${mySimpleEntity.status}</br> 
+        </#list>
+
+    </div>
+
+</div>
+
+
 </#assign>
 <#include "../tpl-master.ftl">
