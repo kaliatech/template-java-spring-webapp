@@ -15,7 +15,7 @@
      http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
 
-  <tx:annotation-driven transaction-manager="kcfmyprojMainTxnManager" proxy-target-class="true" />
+  <tx:annotation-driven transaction-manager="myprojMainTxnManager" proxy-target-class="true" />
 
   <!-- Load @Controllers only -->
   <context:component-scan base-package="com.mycompany.myproj.main.web.pub" use-default-filters="false">
