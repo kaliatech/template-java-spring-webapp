@@ -29,7 +29,8 @@ After cloning, do global search-and-replace on the following (file/directories/t
 * mycompany - used for package naming
 * myproj - used for project naming, package naming, variables, and more
 
- Eventually I'll document:
+
+Eventually I'll document:
 * How to use the common environment setup strategy (optional)
 * How to setup an IDE
  * This architecture has been used with Eclipse, IntelliJ, and Netbeans.
@@ -58,7 +59,7 @@ to create separate webapp that correctly/safely can be deployed independently of
 * Add support for external authentication (OpenId, etc)
  
 * Need to provide more complete web scaffolding starting point
- * integrate AngularJs?
+ * integrate AngularJS?
  * show cross-domain AJAX to RESTful services
 
  
