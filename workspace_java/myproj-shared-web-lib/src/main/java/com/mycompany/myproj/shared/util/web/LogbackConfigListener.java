@@ -1,9 +1,9 @@
 package com.mycompany.myproj.shared.util.web;
 
+import com.mycompany.myproj.shared.util.LogbackConfigurer;
+
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-
-import com.mycompany.myproj.shared.util.LogbackConfigurer;
 
 public class LogbackConfigListener implements ServletContextListener {
 

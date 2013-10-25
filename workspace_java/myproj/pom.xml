@@ -16,6 +16,7 @@
     <module>../myproj-remote1-api</module>
     <module>../myproj-remote1-client-lib</module>
     <module>../myproj-shared-lib</module>
+    <module>../myproj-shared-web-lib</module>	
     <module>../myproj-standalone1-app</module>
   </modules>
 
@@ -182,6 +183,12 @@
       </dependency>
 
       <dependency>
+        <groupId>commons-beanutils</groupId>
+        <artifactId>commons-beanutils</artifactId>
+        <version>1.8.3</version>
+      </dependency>
+
+      <dependency>
         <groupId>commons-codec</groupId>
         <artifactId>commons-codec</artifactId>
         <version>1.7</version>
@@ -228,7 +235,13 @@
       <dependency>
         <groupId>net.engio</groupId>
         <artifactId>mbassador</artifactId>
-        <version>1.1.7</version>
+        <version>1.1.8-SNAPSHOT</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-vfs2</artifactId>
+        <version>2.0</version>
       </dependency>
 
       <dependency>

@@ -1,8 +1,8 @@
 package com.mycompany.myproj.shared.util.web;
 
-import java.util.Map;
-
 import org.springframework.web.servlet.view.json.MappingJacksonJsonView;
+
+import java.util.Map;
 
 /**
  * This class will make sure that if there is a single object to transform to JSON, it won't be rendered inside a map.

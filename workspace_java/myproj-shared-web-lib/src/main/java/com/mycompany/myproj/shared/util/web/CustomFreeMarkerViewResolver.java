@@ -1,12 +1,11 @@
 package com.mycompany.myproj.shared.util.web;
 
+import com.mycompany.myproj.shared.util.MiscUtils;
+import com.mycompany.myproj.shared.util.SecurityUtils;
+import com.mycompany.myproj.shared.util.SharedConfigSettings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.view.AbstractUrlBasedView;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
-
-import com.mycompany.myproj.shared.util.SharedConfigSettings;
-import com.mycompany.myproj.shared.util.MiscUtils;
-import com.mycompany.myproj.shared.util.SecurityUtils;
 
 public class CustomFreeMarkerViewResolver extends FreeMarkerViewResolver {
 

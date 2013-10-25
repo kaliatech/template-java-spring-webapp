@@ -1,16 +1,14 @@
 package com.mycompany.myproj.shared.util.web;
 
-import java.util.Date;
-import java.util.Map;
+import com.mycompany.myproj.shared.util.MiscUtils;
+import com.mycompany.myproj.shared.util.SecurityUtils;
+import com.mycompany.myproj.shared.util.SharedConfigSettings;
+import org.apache.commons.lang3.time.DurationFormatUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.lang3.time.DurationFormatUtils;
-
-import com.mycompany.myproj.shared.util.SharedConfigSettings;
-import com.mycompany.myproj.shared.util.MiscUtils;
-import com.mycompany.myproj.shared.util.SecurityUtils;
+import java.util.Date;
+import java.util.Map;
 
 public class CustomFreeMarkerView extends org.springframework.web.servlet.view.freemarker.FreeMarkerView {
 

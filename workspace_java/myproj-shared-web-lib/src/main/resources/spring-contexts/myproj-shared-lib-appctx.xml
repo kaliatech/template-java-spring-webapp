@@ -31,7 +31,7 @@
         <!-- <prop key="myprojWebAppUrl">#{''}</prop> -->
         
         <prop key="myprojWebAppUrl">/myproj-main-webapp</prop>
-        <prop key="myprojWebStaticUrl">/myproj-main-webstatic</prop>
+        <prop key="myprojWebStaticUrl">${myprojWebAppUrl}/webstatic</prop>
 
         <prop key="mainDatabaseDialect">org.hibernate.dialect.HSQLDialect</prop>
         <prop key="mainDatabaseGenerateDdl">true</prop>

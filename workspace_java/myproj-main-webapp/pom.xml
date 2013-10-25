@@ -54,6 +54,12 @@
       <artifactId>myproj-shared-lib</artifactId>
       <version>${project.version}</version>
     </dependency>
+	
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>myproj-shared-web-lib</artifactId>
+      <version>${project.version}</version>
+    </dependency>	
 
     <dependency>
       <groupId>${project.groupId}</groupId>
