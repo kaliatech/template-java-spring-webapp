@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/myproj-main-webapp" cachingAllowed="false">
+    <ResourceLink name="jdbc/myprojDb" global="jdbc/myprojDb" type="javax.sql.DataSource"/>
+    <JarScanner scanClassPath="false" />
+</Context>
