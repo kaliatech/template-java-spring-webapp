@@ -1,85 +1,119 @@
-/* ===== Primary Styles ========================================================
-   Author:
-   ========================================================================== */
-
-/* This is required by bootstrap when responsive. See style.less. Not sure where to put this when not using less version of bootstrap. */
-/*
-body {
-  padding-top: 60px;
-  padding-bottom: 40px;
-}
+/**
+Bootstrap Imports w/ Overrides
 */
+/* ----------------------------------------- */
 
+// Core variables and mixins
+@import "bootstrap-3.0.2/variables";
+@import "bootstrap-variables-override";
+@import "bootstrap-3.0.2/mixins";
 
-/*
-.hero-unit  {
-	background: #333 url('../i/bkgrnd3_b.jpg') no-repeat 100% center; 
-	color: white;
-	text-shadow:1px 1px 10px #333333;
+  // Reset
+@import "bootstrap-3.0.2/normalize";
+@import "bootstrap-3.0.2/print";
+
+  // Core CSS
+@import "bootstrap-3.0.2/scaffolding";
+@import "bootstrap-3.0.2/type";
+@import "bootstrap-3.0.2/code";
+@import "bootstrap-3.0.2/grid";
+@import "bootstrap-3.0.2/tables";
+@import "bootstrap-3.0.2/forms";
+@import "bootstrap-3.0.2/buttons";
+
+  // Components
+@import "bootstrap-3.0.2/component-animations";
+@import "bootstrap-3.0.2/glyphicons";
+@import "bootstrap-3.0.2/dropdowns";
+@import "bootstrap-3.0.2/button-groups";
+@import "bootstrap-3.0.2/input-groups";
+@import "bootstrap-3.0.2/navs";
+@import "bootstrap-3.0.2/navbar";
+@import "bootstrap-3.0.2/breadcrumbs";
+@import "bootstrap-3.0.2/pagination";
+@import "bootstrap-3.0.2/pager";
+@import "bootstrap-3.0.2/labels";
+@import "bootstrap-3.0.2/badges";
+@import "bootstrap-3.0.2/jumbotron";
+@import "bootstrap-3.0.2/thumbnails";
+@import "bootstrap-3.0.2/alerts";
+@import "bootstrap-3.0.2/progress-bars";
+@import "bootstrap-3.0.2/media";
+@import "bootstrap-3.0.2/list-group";
+@import "bootstrap-3.0.2/panels";
+@import "bootstrap-3.0.2/wells";
+@import "bootstrap-3.0.2/close";
+
+  // Components w/ JavaScript
+@import "bootstrap-3.0.2/modals";
+@import "bootstrap-3.0.2/tooltip";
+@import "bootstrap-3.0.2/popovers";
+@import "bootstrap-3.0.2/carousel";
+
+  // Utility classes
+@import "bootstrap-3.0.2/utilities";
+@import "bootstrap-3.0.2/responsive-utilities";
+
+/* ----------------------------------------- */
+
+.navbar {
+    margin-bottom: 0px;
 }
 
+.breadcrumb {
+  margin-bottom: 5px;
+}
+
+.hide-until-ready {
+  visibility: hidden;
+}
 
 h2 {
-  margin-top: 0.5em;
+  margin-top:10px;
 }
 
-h3 {
-	margin-top: 0.5em;
+.alert {
+  padding: 5px;
+  margin:0;
 }
 
-h2 + hr {
-  margin: 2px;
+.modal-loading {
+  padding: 20px;
 }
 
-
-.example-tb-block {
-  margin: 0 0 0.75em 0;
-}
-*/
-
-
-/* Workaround for bootstrap to center input fields vertically with labels. Not sure why required, because works on their own site. */ 
-select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
-    height: auto !important
+.modal-footer .progress {
+  margin: 6px 12px;
 }
 
-#recentDataTable_length {
-	display:none;
+.form-button-bar {
+  margin-top:25px;
 }
 
-#recentDataTable_filter {
-	display:none;
+.row-section-break {
+  margin-top:10px;
 }
 
-.dataTables_wrapper .fg-toolbar:first-child {
-	display:none;
+.noUi-base {
+ height:14px;
 }
 
-.dataTables_wrapper table.table {
-	margin-bottom: 0px;
-}
-
-.dataTables_wrapper .table th, .dataTables_wrapper .table td {
-	padding:2px;
-}
-
-table .ui-icon {
-	display: inline-block;
+.noUi-handle {
+ height:22px;
+ width:22px;
+ top: -4px;
+ left: -11px;
+ background: @brand-primary;
 }
 
 
-.keyValList label {
-  font-weight: bolder;
-  margin-bottom:0px;
-  text-align: right;
+/** Temporary hack to prevent shifting w/ Twitter bootstrap modals
+    https://github.com/twbs/bootstrap/issues/9855 */
+/** ---------------
+body, body.modal {
+  margin-right: 0 !important;
 }
 
-.keyValList [class*="span"]  {
-  min-height: 0;
+body.modal {
+  overflow-y: hidden;
 }
-
-@media (max-width: 768px) {
-  .keyValList label {
-    text-align: left;
-  }
-}
+/** ---------------  **/

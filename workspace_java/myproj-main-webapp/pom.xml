@@ -40,6 +40,9 @@
                   <include>*.xml</include>
                 </includes>
               </resource>
+              <resource>
+                <!-- Empty resource element marks default configuration. By default it is placed first in generated configuration. -->
+              </resource>
             </resources>
           </classpath>
         </configuration>
