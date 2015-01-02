@@ -10,7 +10,7 @@ It's amazing how quickly things change with regards to development practices. I 
 
 I will soon be checking in a maven archetype for creating my new baseline project structure. It relies heavily on spring-boot, but sets everything up in a multi-module configuration.
 
-I think this is still worthwhile, however, it is also important to check out the [jHipster](https://jhipster.github.io/ project.  The functionality provided by the generated jHipster baseline is seriously impressive.  If nothing else, it provides great examples for integrating more advanced functionality (such as spring security).
+I think this is still worthwhile, however, it is also important to check out the [jHipster](https://jhipster.github.io/) project.  The functionality provided by the generated jHipster baseline is seriously impressive.  If nothing else, it provides great examples for integrating more advanced functionality (such as spring security).
 
 I will likely soon delete this project from github as it no longer represents a good way of doing things with Java/Spring/Maven.
 
