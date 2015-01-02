@@ -4,6 +4,16 @@ My template directory structure and files for bootstrapping a java/spring/maven 
 
 If you are working on a java web project and have to restart the server to see code changes, then you are doing it wrong and all the new kids will laugh at you.
 
+Status as of 2014-12-23
+-----------------
+It's amazing how quickly things change with regards to development practices. I am no longer using this baseline structure for new Java/Spring projects, primarily due to the  advent of [Spring Boot](http://projects.spring.io/spring-boot/). In my latest baseline, there are zero XML files. Everything is done via java configuration. Also, there is no external server setup needed.  Tomcat is embedded and can be run directly from the project.
+
+I will soon be checking in a maven archetype for creating my new baseline project structure. It relies heavily on spring-boot, but sets everything up in a multi-module configuration.
+
+I think this is still worthwhile, however, it is also important to check out the [jHipster](https://jhipster.github.io/ project.  The functionality provided by the generated jHipster baseline is seriously impressive.  If nothing else, it provides great examples for integrating more advanced functionality (such as spring security).
+
+I will likely soon delete this project from github as it no longer represents a good way of doing things with Java/Spring/Maven.
+
 
 Status as of 2013-04-24
 -----------------
